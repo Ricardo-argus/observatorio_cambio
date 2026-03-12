@@ -1,1 +1,64 @@
 # Sobe os containers: Airflow (Webserver, Scheduler), Postgres
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: ricardo
+      POSTGRES_PASSWORD: Ric2026
+      POSTGRES_DB: airflowproj
+    ports:
+    - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ricardo -d airflowproj"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    
+
+  airflow-webserver:
+    image: apache/airflow:2.7.0
+    restart: always
+    depends_on:
+      - postgres
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://ricardo:Ric2026@postgres:5432/airflowproj
+      AIRFLOW__CORE__DAGS_FOLDER: /opt/airflow/dags
+      PYTHONPATH: /opt/airflow:/opt/airflow/include
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./include:/opt/airflow/include
+      - ./logs:/opt/airflow/logs
+    ports:
+      - "8080:8080"
+    command: webserver
+
+  airflow-scheduler:
+    image: apache/airflow:2.7.0
+    restart: always
+    depends_on:
+      - postgres
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://ricardo:Ric2026@postgres:5432/airflowproj
+      PYTHONPATH: /opt/airflow:/opt/airflow/include
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./include:/opt/airflow/include
+      - ./logs:/opt/airflow/logs
+    command: scheduler
+
+  dbt:
+    image: ghcr.io/dbt-labs/dbt-postgres:latest
+    volumes:
+      - .:/usr/app
+    working_dir: /usr/app
+    command: ["bash"]
+
+volumes:
+  postgres_data:

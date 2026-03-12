@@ -1,0 +1,116 @@
+[0m21:26:23.024033 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FE392BBCB0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FE35033750>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FE370F1950>]}
+
+
+============================== 21:26:23.027635 | 2661a4be-9c24-466d-931f-3b1f3253c094 ==============================
+[0m21:26:23.027635 [info ] [MainThread]: Running with dbt=1.11.2
+[0m21:26:23.028092 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'no_print': 'None', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'printer_width': '80', 'write_json': 'True', 'empty': 'None', 'log_cache_events': 'False', 'introspect': 'True', 'cache_selected_only': 'False', 'log_format': 'default', 'debug': 'False', 'fail_fast': 'False', 'profiles_dir': 'C:\\Users\\Ricardo\\.dbt', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'invocation_command': 'dbt ', 'use_colors': 'True', 'indirect_selection': 'eager', 'use_experimental_parser': 'False', 'log_path': 'c:\\observatorio_cambio\\dbt_project\\logs'}
+[0m21:26:23.031606 [warn ] [MainThread]: [[33mWARNING[0m][CustomTopLevelKeyDeprecation]: Deprecated functionality
+Unexpected top-level key source-paths in file
+`c:\observatorio_cambio\dbt_project\dbt_project.yml`
+[0m21:26:23.031963 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': '2661a4be-9c24-466d-931f-3b1f3253c094', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FE3B53D0F0>]}
+[0m21:26:23.036929 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `source-paths` config has been renamed to `model-paths`. Please update your
+`dbt_project.yml` configuration to reflect this change.
+[0m21:26:23.037275 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': '2661a4be-9c24-466d-931f-3b1f3253c094', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FE3A491D00>]}
+[0m21:26:23.160465 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '2661a4be-9c24-466d-931f-3b1f3253c094', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FE3A393D50>]}
+[0m21:26:23.181359 [info ] [MainThread]: Warning: No packages were found in packages.yml
+[0m21:26:23.182399 [info ] [MainThread]: Warning: No packages were found in packages.yml
+[0m21:26:23.182978 [warn ] [MainThread]: [[33mWARNING[0m][DeprecationsSummary]: Deprecated functionality
+Summary of encountered deprecations:
+- CustomTopLevelKeyDeprecation: 1 occurrence
+- ConfigSourcePathDeprecation: 1 occurrence
+To see all deprecation instances instead of just the first occurrence of each,
+run command again with the `--show-all-deprecations` flag. You may also need to
+run with `--no-partial-parse` as some deprecations are only encountered during
+parsing.
+[0m21:26:23.183617 [debug] [MainThread]: Command `cli deps` succeeded at 21:26:23.183517 after 0.26 seconds
+[0m21:26:23.183906 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FE3B734050>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FE3B7355E0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FE3A3CBE70>]}
+[0m21:26:23.184193 [debug] [MainThread]: Flushing usage events
+[0m21:26:24.066054 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m07:49:14.425087 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002D4AD40BCB0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002D4A91F3750>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002D4AB285950>]}
+
+
+============================== 07:49:14.432009 | 07e9a41f-130f-4eb8-aec7-af01f0a1c855 ==============================
+[0m07:49:14.432009 [info ] [MainThread]: Running with dbt=1.11.2
+[0m07:49:14.432838 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'no_print': 'None', 'static_parser': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'printer_width': '80', 'write_json': 'True', 'empty': 'None', 'log_cache_events': 'False', 'introspect': 'True', 'cache_selected_only': 'False', 'fail_fast': 'False', 'debug': 'False', 'log_format': 'default', 'profiles_dir': 'C:\\Users\\Ricardo\\.dbt', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'indirect_selection': 'eager', 'invocation_command': 'dbt ', 'use_colors': 'True', 'use_experimental_parser': 'False', 'log_path': 'c:\\observatorio_cambio\\dbt_project\\logs'}
+[0m07:49:14.446397 [warn ] [MainThread]: [[33mWARNING[0m][CustomTopLevelKeyDeprecation]: Deprecated functionality
+Unexpected top-level key source-paths in file
+`c:\observatorio_cambio\dbt_project\dbt_project.yml`
+[0m07:49:14.446912 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': '07e9a41f-130f-4eb8-aec7-af01f0a1c855', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002D4AF68D0F0>]}
+[0m07:49:14.452334 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `source-paths` config has been renamed to `model-paths`. Please update your
+`dbt_project.yml` configuration to reflect this change.
+[0m07:49:14.452900 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': '07e9a41f-130f-4eb8-aec7-af01f0a1c855', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002D4AE5E1D00>]}
+[0m07:49:14.617005 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '07e9a41f-130f-4eb8-aec7-af01f0a1c855', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002D4AE4DFD50>]}
+[0m07:49:14.668939 [info ] [MainThread]: Warning: No packages were found in packages.yml
+[0m07:49:14.674785 [info ] [MainThread]: Warning: No packages were found in packages.yml
+[0m07:49:14.676541 [warn ] [MainThread]: [[33mWARNING[0m][DeprecationsSummary]: Deprecated functionality
+Summary of encountered deprecations:
+- CustomTopLevelKeyDeprecation: 1 occurrence
+- ConfigSourcePathDeprecation: 1 occurrence
+To see all deprecation instances instead of just the first occurrence of each,
+run command again with the `--show-all-deprecations` flag. You may also need to
+run with `--no-partial-parse` as some deprecations are only encountered during
+parsing.
+[0m07:49:14.678530 [debug] [MainThread]: Command `cli deps` succeeded at 07:49:14.678227 after 0.41 seconds
+[0m07:49:14.679989 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002D4AF904050>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002D4AF9055E0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002D4AE51BE70>]}
+[0m07:49:14.680842 [debug] [MainThread]: Flushing usage events
+[0m07:49:16.121727 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m20:35:10.591180 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000267FA7FFCB0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000267F6623750>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000267F86B9950>]}
+
+
+============================== 20:35:10.594698 | d2f97088-a44d-49a1-85b5-75b61a65805b ==============================
+[0m20:35:10.594698 [info ] [MainThread]: Running with dbt=1.11.2
+[0m20:35:10.595147 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'no_print': 'None', 'static_parser': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'printer_width': '80', 'write_json': 'True', 'empty': 'None', 'log_cache_events': 'False', 'introspect': 'True', 'cache_selected_only': 'False', 'log_format': 'default', 'debug': 'False', 'fail_fast': 'False', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'profiles_dir': 'C:\\Users\\Ricardo\\.dbt', 'indirect_selection': 'eager', 'invocation_command': 'dbt ', 'use_colors': 'True', 'use_experimental_parser': 'False', 'log_path': 'c:\\observatorio_cambio\\dbt_project\\logs'}
+[0m20:35:10.638613 [warn ] [MainThread]: [[33mWARNING[0m][CustomTopLevelKeyDeprecation]: Deprecated functionality
+Unexpected top-level key source-paths in file
+`c:\observatorio_cambio\dbt_project\dbt_project.yml`
+[0m20:35:10.639075 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': 'd2f97088-a44d-49a1-85b5-75b61a65805b', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000267FCA7D0F0>]}
+[0m20:35:10.645959 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `source-paths` config has been renamed to `model-paths`. Please update your
+`dbt_project.yml` configuration to reflect this change.
+[0m20:35:10.646748 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': 'd2f97088-a44d-49a1-85b5-75b61a65805b', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000267FB9D1D00>]}
+[0m20:35:10.773925 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'd2f97088-a44d-49a1-85b5-75b61a65805b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000267FB8D3D50>]}
+[0m20:35:10.799606 [info ] [MainThread]: Warning: No packages were found in packages.yml
+[0m20:35:10.800921 [info ] [MainThread]: Warning: No packages were found in packages.yml
+[0m20:35:10.801532 [warn ] [MainThread]: [[33mWARNING[0m][DeprecationsSummary]: Deprecated functionality
+Summary of encountered deprecations:
+- CustomTopLevelKeyDeprecation: 1 occurrence
+- ConfigSourcePathDeprecation: 1 occurrence
+To see all deprecation instances instead of just the first occurrence of each,
+run command again with the `--show-all-deprecations` flag. You may also need to
+run with `--no-partial-parse` as some deprecations are only encountered during
+parsing.
+[0m20:35:10.802198 [debug] [MainThread]: Command `cli deps` succeeded at 20:35:10.802099 after 0.33 seconds
+[0m20:35:10.802478 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000267FCD2C050>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000267FCD2D5E0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000267FB90BE70>]}
+[0m20:35:10.802776 [debug] [MainThread]: Flushing usage events
+[0m20:35:11.748458 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m21:29:04.932066 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000252ACB9FCB0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000252A8953750>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000252AA9F5950>]}
+
+
+============================== 21:29:04.935677 | c994c4a2-ba72-4ac3-a6b6-db720a88eee3 ==============================
+[0m21:29:04.935677 [info ] [MainThread]: Running with dbt=1.11.2
+[0m21:29:04.936166 [debug] [MainThread]: running dbt with arguments {'static_parser': 'True', 'no_print': 'None', 'version_check': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'empty': 'None', 'cache_selected_only': 'False', 'fail_fast': 'False', 'debug': 'False', 'log_format': 'default', 'profiles_dir': 'C:\\Users\\Ricardo\\.dbt', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'use_colors': 'True', 'invocation_command': 'dbt ', 'indirect_selection': 'eager', 'use_experimental_parser': 'False', 'log_path': 'c:\\observatorio_cambio\\dbt_project\\logs'}
+[0m21:29:04.939127 [warn ] [MainThread]: [[33mWARNING[0m][CustomTopLevelKeyDeprecation]: Deprecated functionality
+Unexpected top-level key source-paths in file
+`c:\observatorio_cambio\dbt_project\dbt_project.yml`
+[0m21:29:04.939742 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': 'c994c4a2-ba72-4ac3-a6b6-db720a88eee3', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000252AEE2D0F0>]}
+[0m21:29:04.945522 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `source-paths` config has been renamed to `model-paths`. Please update your
+`dbt_project.yml` configuration to reflect this change.
+[0m21:29:04.946030 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': 'c994c4a2-ba72-4ac3-a6b6-db720a88eee3', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000252ADD81D00>]}
+[0m21:29:05.068020 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'c994c4a2-ba72-4ac3-a6b6-db720a88eee3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000252ADC83D50>]}
+[0m21:29:05.083085 [info ] [MainThread]: Warning: No packages were found in packages.yml
+[0m21:29:05.084413 [info ] [MainThread]: Warning: No packages were found in packages.yml
+[0m21:29:05.085023 [warn ] [MainThread]: [[33mWARNING[0m][DeprecationsSummary]: Deprecated functionality
+Summary of encountered deprecations:
+- CustomTopLevelKeyDeprecation: 1 occurrence
+- ConfigSourcePathDeprecation: 1 occurrence
+To see all deprecation instances instead of just the first occurrence of each,
+run command again with the `--show-all-deprecations` flag. You may also need to
+run with `--no-partial-parse` as some deprecations are only encountered during
+parsing.
+[0m21:29:05.085994 [debug] [MainThread]: Command `cli deps` succeeded at 21:29:05.085737 after 0.26 seconds
+[0m21:29:05.086445 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000252AF0E8050>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000252AF0E95E0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000252ADCBBE70>]}
+[0m21:29:05.086771 [debug] [MainThread]: Flushing usage events
+[0m21:29:05.932889 [debug] [MainThread]: An error was encountered while trying to flush usage events
