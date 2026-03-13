@@ -4,8 +4,19 @@ import sqlalchemy as sa
 from datetime import datetime
 
 # Usa a mesma string de conexão definida no docker-compose
-CONN_STR = "postgresql+psycopg2://ricardo:Ric2026@postgres:5432/airflowproj"
+CONN_STR = (
+    f"postgresql+psycopg2://{os.getenv('POSTGRES_USER')}:{os.getenv('POSTGRES_PASSWORD')}"
+    f"@{os.getenv('POSTGRES_HOST')}:{os.getenv('POSTGRES_PORT')}/{os.getenv('POSTGRES_DB')}"
+)
+
 engine = sa.create_engine(CONN_STR)
+
+#criar var data inicial e final
+
+# data_inicial = datetime("01-01-2025")
+
+#data_final = datetime.today().strptime("%d-%m-%Y")
+#adicionar como f string no meio do url 
 
 def ingest_data():
     url = (

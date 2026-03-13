@@ -1,5 +1,3 @@
-# Onde ficam seus arquivos de definição do fluxo (DAGs)│   └── monitoramento_dolar.py     # O código que orquestra as Tasks 1, 2, 3 e 4
-
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from datetime import datetime

@@ -1,7 +1,11 @@
 import pandas as pd
 import sqlalchemy as sa
+import os
 
-CONN_STR = "postgresql+psycopg2://ricardo:Ric2026@postgres:5432/airflowproj"
+CONN_STR = (
+    f"postgresql+psycopg2://{os.getenv('POSTGRES_USER')}:{os.getenv('POSTGRES_PASSWORD')}"
+    f"@{os.getenv('POSTGRES_HOST')}:{os.getenv('POSTGRES_PORT')}/{os.getenv('POSTGRES_DB')}"
+)
 engine = sa.create_engine(CONN_STR)
 
 
