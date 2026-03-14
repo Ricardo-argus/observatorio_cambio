@@ -21,7 +21,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
   airflow-webserver:
-    image: apache/airflow:2.7.0
+    build: .
     restart: always
     depends_on:
       - postgres
@@ -41,7 +41,7 @@ services:
     command: webserver
 
   airflow-scheduler:
-    image: apache/airflow:2.7.0
+    build: .
     restart: always
     depends_on:
       - postgres

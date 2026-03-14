@@ -11,14 +11,8 @@ CONN_STR = (
 
 engine = sa.create_engine(CONN_STR)
 
-#criar var data inicial e final
-
-# data_inicial = datetime("01-01-2025")
-
-#data_final = datetime.today().strptime("%d-%m-%Y")
-#adicionar como f string no meio do url 
-
 def ingest_data():
+
     url = (
         "https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarPeriodo(dataInicial=@dataInicial,dataFinalCotacao=@dataFinalCotacao)?@dataInicial=%2701-01-2025%27&@dataFinalCotacao=%2703-11-2026%27&$top=100&$format=json"
     )

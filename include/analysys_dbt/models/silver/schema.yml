@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: mean_pct_venda_2025
+    description: "Average of venda pct in 2025 year"
+    columns:
+      - name: media_pct_venda
+        description: "media_pct_venda describes average variation along the days of the currency"
+        data_tests:
+          - unique
+          - not_null

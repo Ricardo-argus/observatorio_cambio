@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: silver 
+    database: airflowproj   
+    schema: public               
+    tables: 
+      - name: silver_cambio #
+        description: "currency calculated with percentages and variations of vendas and compra trades"
+        columns:
+          - name: variacao_pct_venda
+            description: "variation of percentage of all currency trade market"
