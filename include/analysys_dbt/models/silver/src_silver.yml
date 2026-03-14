@@ -5,7 +5,7 @@ sources:
     database: airflowproj   
     schema: public               
     tables: 
-      - name: silver_cambio #
+      - name: silver_dol_cambio #
         description: "currency calculated with percentages and variations of vendas and compra trades"
         columns:
           - name: variacao_pct_venda
