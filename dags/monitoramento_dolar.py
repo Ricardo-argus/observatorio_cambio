@@ -6,6 +6,7 @@ from include.scripts.ingestao_dol import ingest_data
 from include.scripts.ingestao_euro import ingest_euro_data
 from include.scripts.processamento_dol import process_dol_data
 from include.scripts.processamento_euro import process_euro_data
+from include.scripts.variacoes_cambio import joins_cambio
 
 with DAG(
     dag_id="monitoramento_cambial",
@@ -18,13 +19,14 @@ with DAG(
     t2 = PythonOperator(task_id="ingestao_euro", python_callable = ingest_euro_data)
     t3 = PythonOperator(task_id="processamento_dol", python_callable=process_dol_data)
     t4 = PythonOperator(task_id="processamento_euro", python_callable=process_euro_data)
+    t5 = PythonOperator(task_id="join_cambial", python_callable=joins_cambio)
 
-    t5 = BashOperator(
+    t6 = BashOperator(
         task_id = "dbt_run",
         bash_command="cd /opt/airflow/include/analysys_dbt && dbt run --profiles-dir /opt/airflow/include/analysys_dbt"
     )
 
-    t6 = BashOperator(
+    t7 = BashOperator(
         task_id = "dbt_test",
         bash_command="cd /opt/airflow/include/analysys_dbt && dbt test --profiles-dir /opt/airflow/include/analysys_dbt"
     )
@@ -32,4 +34,4 @@ with DAG(
 
 
 
-    t1 >> t2 >> t3 >> t4 >> t5 >> t6
+    t1 >> t2 >> t3 >> t4 >> t5 >> t6 >> t7
