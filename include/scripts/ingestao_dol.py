@@ -12,6 +12,19 @@ CONN_STR = (
 )
 
 engine = sa.create_engine(CONN_STR)
+metadata = sa.MetaData()
+
+bronze_dol_cambio = sa.Table(
+        'bronze_dol_cambio',
+        metadata,
+        sa.Column('id', sa.Integer, primary_key=True, autoincrement=True),
+        sa.Column("cotacao_compra", sa.Numeric(10,4)),
+        sa.Column("cotacao_venda", sa.Numeric(10,4)),
+        sa.Column("datahoracotacao", sa.TIMESTAMP, nullable=False, unique=True),
+        sa.Column('tipoboletim', sa.String)
+)
+
+metadata.create_all(engine)
 
 def ingest_data():
 
