@@ -16,7 +16,7 @@ engine = sa.create_engine(CONN_STR)
 def ingest_data():
 
     url = (
-        "https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoMoedaPeriodo(moeda=@moeda,dataInicial=@dataInicial,dataFinalCotacao=@dataFinalCotacao)?@moeda='USD'&@dataInicial='01-01-2025'&@dataFinalCotacao='01-01-2026'&$top=1000&$filter=tipoBoletim%20eq%20'Fechamento'&$orderby=dataHoraCotacao&$format=json&$select=cotacaoCompra,cotacaoVenda,dataHoraCotacao,tipoBoletim"
+        "https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoMoedaPeriodo(moeda=@moeda,dataInicial=@dataInicial,dataFinalCotacao=@dataFinalCotacao)?@moeda='USD'&@dataInicial='01-01-2022'&@dataFinalCotacao='01-01-2026'&$top=1000&$filter=tipoBoletim%20eq%20'Fechamento'&$orderby=dataHoraCotacao&$format=json&$select=cotacaoCompra,cotacaoVenda,dataHoraCotacao,tipoBoletim"
     )
     response = requests.get(url).json()
 

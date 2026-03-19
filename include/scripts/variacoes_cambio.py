@@ -1,8 +1,6 @@
 import os
 import pandas as pd
-import numpy as np
 import sqlalchemy as sa
-from datetime import datetime
 from sqlalchemy.dialects.postgresql import insert
 
 CONN_STR = (
@@ -12,26 +10,64 @@ CONN_STR = (
 engine = sa.create_engine(CONN_STR)
 
 def joins_cambio():
-    df_dol = pd.read_sql("SELECT * FROM silver_dol_cambio", engine)
-    df_euro = pd.read_sql("SELECT * FROM silver_euro_cambio", engine)
+    # Lê os dados das tabelas silver
+    df_dol = pd.read_sql("SELECT * FROM public.silver_dol_cambio ORDER BY datahoracotacao", engine)
+    df_euro = pd.read_sql("SELECT * FROM public.silver_euro_cambio ORDER BY datahoracotacao", engine)
 
-    df_variacoes = pd.merge(df_dol, df_euro, on='id', how='inner', suffixes=("_dol", "_euro"))
+    # Faz o merge pelo campo de data
+    df = pd.merge(
+        df_dol,
+        df_euro,
+        left_on="datahoracotacao",
+        right_on="datahoracotacao",
+        how="inner",
+        suffixes=("_dol", "_euro")
+    )
 
-    df_variacoes = df_variacoes[
-    ["id", "cotacao_venda_dol", "cotacao_venda_euro",
-     "cotacao_compra_dol", "cotacao_compra_euro", "datahoracotacao_dol"]
-    ]
+    # Seleciona e renomeia colunas
+    df = df[[
+        "datahoracotacao",
+        "cotacao_venda_dol", "cotacao_venda_euro",
+        "cotacao_compra_dol", "cotacao_compra_euro"
+    ]]
 
-    df_variacoes = df_variacoes.rename(columns={"datahoracotacao_dol": "datacotacao"})
-    
-    df_variacoes["datacotacao"] = pd.to_datetime(df_variacoes["datacotacao"]).dt.date
+    # Calcula variações entre moedas
+    df["variacao_compra_moeda"] = (df["cotacao_compra_dol"] - df["cotacao_compra_euro"]).round(4)
+    df["variacao_venda_moeda"] = (df["cotacao_venda_dol"] - df["cotacao_venda_euro"]).round(4)
 
-    numericos = ["cotacao_venda_dol", "cotacao_venda_euro","cotacao_compra_dol", "cotacao_compra_euro"]
-    df_variacoes[numericos] = df_variacoes[numericos].round(3)
+    rows = df.to_dict(orient="records")
 
-    df_variacoes["variacao_compra_moeda"] = (df_variacoes["cotacao_compra_dol"] - df_variacoes["cotacao_compra_euro"].shift(1)).abs().round(4)
+    metadata = sa.MetaData()
 
-    df_variacoes["variacao_venda_moeda"] = (df_variacoes["cotacao_venda_dol"] - df_variacoes["cotacao_venda_euro"].shift(1)).abs().round(4)
+    # Define a tabela consolidada
+    cambio_eur_usd = sa.Table(
+        "cambio_eur_usd",
+        metadata,
+        sa.Column("id", sa.Integer, primary_key=True, autoincrement=True),
+        sa.Column("datahoracotacao", sa.TIMESTAMP, nullable=False, unique=True),
+        sa.Column("cotacao_venda_dol", sa.Numeric(10,4)),
+        sa.Column("cotacao_venda_euro", sa.Numeric(10,4)),
+        sa.Column("cotacao_compra_dol", sa.Numeric(10,4)),
+        sa.Column("cotacao_compra_euro", sa.Numeric(10,4)),
+        sa.Column("variacao_compra_moeda", sa.Numeric(10,4)),
+        sa.Column("variacao_venda_moeda", sa.Numeric(10,4)),
+        extend_existing=True
+    )
 
-    df_variacoes.to_sql("cambio_EUR_USD", engine, if_exists='replace', index=False)
+    metadata.create_all(engine)
 
+    # Faz o upsert
+    with engine.begin() as conn:
+        stmt = insert(cambio_eur_usd).values(rows)
+        stmt = stmt.on_conflict_do_update(
+            index_elements=["datahoracotacao"],
+            set_={
+                "cotacao_venda_dol": stmt.excluded.cotacao_venda_dol,
+                "cotacao_venda_euro": stmt.excluded.cotacao_venda_euro,
+                "cotacao_compra_dol": stmt.excluded.cotacao_compra_dol,
+                "cotacao_compra_euro": stmt.excluded.cotacao_compra_euro,
+                "variacao_compra_moeda": stmt.excluded.variacao_compra_moeda,
+                "variacao_venda_moeda": stmt.excluded.variacao_venda_moeda
+            }
+        )
+        conn.execute(stmt)

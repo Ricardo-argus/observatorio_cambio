@@ -1,0 +1,6 @@
+WITH mean_euro_venda_2025 AS(
+    SELECT cotacao_venda, datahoracotacao FROM {{ source('silver', 'silver_euro_cambio') }}
+)
+
+SELECT MAX(cotacao_venda) as Maximo_valor FROM mean_euro_venda_2025
+WHERE EXTRACT(YEAR FROM datahoracotacao) = 2025

@@ -5,8 +5,28 @@ sources:
     database: airflowproj   
     schema: public               
     tables: 
-      - name: silver_dol_cambio #
+      - name: silver_dol_cambio
         description: "currency calculated with percentages and variations of vendas and compra trades"
         columns:
           - name: variacao_pct_venda
             description: "variation of percentage of all currency trade market"
+      - name: silver_euro_cambio
+        description: "currency calculated with selling euro rate"
+        columns:
+          - name: cotacao_venda
+            description: "value of euro selling rate by date"
+  - name: gold
+    database: airflowproj   
+    schema: public               
+    tables: 
+      - name: cambio_eur_usd
+        description: "currency calculated between USD and EUR"
+        columns:
+          - name: variacao_compra_moeda
+            description: "variation of buying euros currency compared to USD"
+          - name: variacao_venda_moeda
+            description: "variation of sold euros currency compared to USD"
+          - name: cotacao_venda_dol
+            description: "value of dollar selling rate by date"
+
+  
