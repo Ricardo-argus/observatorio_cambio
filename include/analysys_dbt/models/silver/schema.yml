@@ -1,5 +1,10 @@
 version: 2
 
+sources:
+      - name: silver
+        tables:
+          - name: silver_dol_cambio
+
 models:
   - name: mean_pct_venda_2025
     description: "Average of venda pct in 2025 year"
