@@ -1,7 +1,7 @@
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.operators.bash import BashOperator
-from airflow.operators.dagrun_operator import TriggerDagRunOperator
+from airflow.operators.trigger_dagrun import TriggerDagRunOperator
 from datetime import datetime, timedelta
 from include.scripts.ingestao_dol import ingest_data
 from include.scripts.ingestao_euro import ingest_euro_data
@@ -30,15 +30,24 @@ with DAG(
 
     join_cambios = PythonOperator(task_id="join_cambial", python_callable=joins_cambio)
 
-    rodar_dbt = BashOperator(
+
+    with TaskGroup("dbt_process") as dbt_process:
+        rodar_dbt = BashOperator(
         task_id = "dbt_run",
         bash_command="cd /opt/airflow/include/analysys_dbt && dbt run --profiles-dir /opt/airflow/include/analysys_dbt"
-    )
+        )
 
-    teste_models = BashOperator(
+        teste_models = BashOperator(
         task_id = "dbt_test",
         bash_command="cd /opt/airflow/include/analysys_dbt && dbt test --profiles-dir /opt/airflow/include/analysys_dbt"
-    )
+        )
+
+        criar_DAG_models = BashOperator(
+        task_id = "dbt_dag",
+        bash_command = "cd /opt/airflow/include/analysys_dbt && dbt docs generate --profiles-dir /opt/airflow/include/analysys_dbt"
+        )
+
+        rodar_dbt >> teste_models >> criar_DAG_models
 
     trigger_graficos = TriggerDagRunOperator(
         task_id = "trigger_graficos_dag",
@@ -46,4 +55,4 @@ with DAG(
     )
 
 
-    [pipeline_dolar, pipeline_euro] >> join_cambios >> rodar_dbt >> teste_models >> trigger_graficos 
+    [pipeline_dolar, pipeline_euro] >> join_cambios >> dbt_process >> trigger_graficos 
