@@ -62,6 +62,7 @@ dbt test
 
 # ESTRUTURA DO PROJETO
 
+```
 OBSERVATORIO_CAMBIO/
 │
 ├── dags/
