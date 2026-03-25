@@ -104,7 +104,5 @@ Macros para validação de duplicados, preencher valores nulos com COALESCE (0) 
 
 Modelos para obter media de valores, variações de compra e venda, obter revenue entre outros...
 
-## DAG DBT 
-
 
 
