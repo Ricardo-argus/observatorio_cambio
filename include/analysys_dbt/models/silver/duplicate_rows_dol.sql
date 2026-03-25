@@ -1,0 +1,1 @@
+{{ check_duplicates(source('silver','silver_dol_cambio'), ['id', 'datahoracotacao']) }}
