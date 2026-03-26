@@ -12,7 +12,7 @@ from airflow.utils.task_group import TaskGroup
 
 with DAG(
     dag_id="monitoramento_cambial",
-    start_date=datetime(2024,1,1),
+    start_date=datetime(2022,1,1),
     schedule_interval = "@daily",
     catchup=False
 ) as dag:
