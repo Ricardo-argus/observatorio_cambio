@@ -3,6 +3,7 @@ import requests
 import sqlalchemy as sa
 from datetime import datetime
 from sqlalchemy.dialects.postgresql import insert
+import pandas as pd
 
 
 # Usa a mesma string de conexão definida no docker-compose
@@ -28,9 +29,11 @@ metadata.create_all(engine)
 
 def ingest_data():
 
-    url = (
-        "https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoMoedaPeriodo(moeda=@moeda,dataInicial=@dataInicial,dataFinalCotacao=@dataFinalCotacao)?@moeda='USD'&@dataInicial='01-01-2022'&@dataFinalCotacao='01-01-2026'&$top=1000&$filter=tipoBoletim%20eq%20'Fechamento'&$orderby=dataHoraCotacao&$format=json&$select=cotacaoCompra,cotacaoVenda,dataHoraCotacao,tipoBoletim"
-    )
+    df = pd.read_excel("/opt/airflow/excel_analyses/Advanced_Imported_Analyses.xlsm", sheet_name="Main_Macros", header=None, engine="openpyxl")
+    
+    # Supondo que a coluna se chame 'url_API'
+    url = df.iloc[30, 2]
+
     response = requests.get(url).json()
 
     rows = []

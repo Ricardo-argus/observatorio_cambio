@@ -18,7 +18,7 @@ with DAG(
 ) as dag:
     
     with TaskGroup("pipeline_dolar") as pipeline_dolar:
-        t1 = PythonOperator(task_id="ingestao_dolar", python_callable = ingest_data)
+        t1 = PythonOperator(task_id="ingestao_dol", python_callable = ingest_data)
         t3 = PythonOperator(task_id="processamento_dol", python_callable=process_dol_data)
         t1 >> t3
 
