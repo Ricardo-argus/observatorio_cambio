@@ -44,10 +44,16 @@ def ingest_euro_data():
             "datahoracotacao": datetime.strptime(item["dataHoraCotacao"], "%Y-%m-%d %H:%M:%S.%f"),
             "tipoboletim": str(item["tipoBoletim"])
         })
+    
+    #Carrega a Tabela 
+    table = sa.Table("bronze_euro_cambio", sa.MetaData(), autoload_with=engine)
 
     # Faz o upsert usando datahoracotacao como chave única
     with engine.begin() as conn:
-        table = sa.Table("bronze_euro_cambio", sa.MetaData(), autoload_with=engine)
+        # Apaga os registros antigos
+        conn.execute(sa.text("DELETE FROM bronze_euro_cambio"))
+
+        # Faz o upsert 
         stmt = insert(table).values(rows)
         stmt = stmt.on_conflict_do_update(
             index_elements=["datahoracotacao"],  # precisa ser UNIQUE na tabela
