@@ -31,7 +31,7 @@ def ingest_data():
 
     df = pd.read_excel("/opt/airflow/excel_analyses/Advanced_Imported_Analyses.xlsm", sheet_name="Main_Macros", header=None, engine="openpyxl")
     
-    # Supondo que a coluna se chame 'url_API'
+    # coluna'url_API'
     url = df.iloc[30, 2]
 
     response = requests.get(url).json()

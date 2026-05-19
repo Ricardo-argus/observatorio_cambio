@@ -31,7 +31,7 @@ def ingest_euro_data():
     # Carrega o Excel
     df = pd.read_excel("/opt/airflow/excel_analyses/Advanced_Imported_Analyses.xlsm", sheet_name="Main_Macros", header=None, engine="openpyxl")
     
-    # Supondo que a coluna se chame 'url_API'
+    # Coluna 'url_API'
     url = df.iloc[24, 2]
 
     response = requests.get(url).json()
@@ -45,7 +45,7 @@ def ingest_euro_data():
             "tipoboletim": str(item["tipoBoletim"])
         })
     
-    #Carrega a Tabela 
+    # Carrega a Tabela 
     table = sa.Table("bronze_euro_cambio", sa.MetaData(), autoload_with=engine)
 
     # Faz o upsert usando datahoracotacao como chave única
